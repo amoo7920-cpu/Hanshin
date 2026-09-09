@@ -1,0 +1,8 @@
+{
+  "name": "한신의 교훈: 인생사 새옹지마 발표 자료",
+  "description": "한나라 장수 한신의 전설적인 성공과 몰락 이야기를 통해 인생사 새옹지마의 지혜와 빠른 성공의 명암을 4컷 만화 형식으로 유쾌하게 전하는 사내 임직원 발표용 슬라이드 덱입니다.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
