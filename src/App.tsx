@@ -161,31 +161,6 @@ export default function App() {
       display: flex;
       gap: 10px;
     }
-    .script-box {
-      max-width: 960px;
-      width: 100%;
-      background: var(--amber-50);
-      border: 1px solid var(--amber-100);
-      padding: 20px;
-      border-radius: 12px;
-      box-sizing: border-box;
-      margin-top: 25px;
-    }
-    .script-title {
-      font-size: 12px;
-      font-weight: bold;
-      color: var(--amber-800);
-      margin-bottom: 8px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-    .script-text {
-      font-size: 14px;
-      line-height: 1.6;
-      color: var(--stone-700);
-      white-space: pre-line;
-      margin: 0;
-    }
     .comic-grid {
       display: grid;
       grid-template-cols: repeat(4, 1fr);
@@ -394,19 +369,19 @@ export default function App() {
       <div>
         <span class="badge">실천 행동양식</span>
         <h2>임직원 핵심 행동 양식 제안</h2>
-        <div class="subtitle">한신이 오늘날 우리 임직원 발표회에 던지는 3가지 질문</div>
+        <div class="subtitle">한신의 삶을 통해 배우는 우리의 건강한 직장 생활 수칙</div>
         <div class="card-takeaways">
           <div class="takeaway-col">
-            <div class="takeaway-title">1. 과하지욕의 기운</div>
-            <div class="takeaway-body">지금 마주한 어려움은 다음 대장군 비상을 위한 축적과 성찰의 기간입니다.</div>
+            <div class="takeaway-title">1. 장기적 안목으로 차근차근 생활하자</div>
+            <div class="takeaway-body">당장의 일시적 마찰이나 눈앞의 장애에 마음 졸이거나 조급해하지 말고, 더 먼 장래의 큰 결실과 성장을 바라보며 하루하루를 우직하고 탄탄하게 채워나갑니다.</div>
           </div>
           <div class="takeaway-col">
-            <div class="takeaway-title">2. 성과와 겸손의 균형</div>
-            <div class="takeaway-body">빠른 프로젝트 성과를 얻었다면 겸손히 동료들에게 공을 나누어 나의 내실을 견고히 합시다.</div>
+            <div class="takeaway-title">2. 일희일비 할 필요없다</div>
+            <div class="takeaway-body">오늘의 성과나 칭찬에 자만하여 들뜨지 말고, 오늘의 실수나 부침에 낙담하여 포기하지 마십시오. 모든 성과와 인생의 운세는 계절처럼 끊임없이 순환합니다.</div>
           </div>
           <div class="takeaway-col">
-            <div class="takeaway-title">3. 상호 정서적 얼라인</div>
-            <div class="takeaway-body">나의 전문성을 뽐내기 전에 이것이 조직 전체의 조화와 위기 정서에 잘 녹아드는지 매칭합시다.</div>
+            <div class="takeaway-title">3. 겸손한 자세로 생활하자</div>
+            <div class="takeaway-body">큰 성공을 거두거나 독보적인 기량을 지녔을 때일수록 자신을 낮추고 주변 동료들의 협력에 공을 돌립시다. 상호 신뢰와 소통을 갖추어야만 롱런할 수 있습니다.</div>
           </div>
         </div>
       </div>
@@ -423,24 +398,9 @@ export default function App() {
     <button class="nav-btn" id="next-btn" onclick="moveSlide(1)">다음 슬라이드 (또는 키보드 우측키)</button>
   </div>
 
-  <!-- Teleprompter script -->
-  <div class="script-box">
-    <div class="script-title">📢 발표자 대본 (Teleprompter)</div>
-    <p class="script-text" id="script-target">대본 로딩 중...</p>
-  </div>
-
   <script>
     let activeIndex = 0;
     const totalSlides = 7;
-    const scripts = {
-      0: "[발표 시작 멘트]\\n여러분 안녕하십니까. 오늘 임직원 발표회에서 제가 나누고 싶은 주제는 바로 '인생사 새옹지마'입니다. 오늘은 특별히 초한지의 전설적인 명장 '한신'의 일대기를 통해, 직장인으로서 성공과 좌절을 어떻게 다스려야 하는지에 대해 이야기하려 합니다.",
-      1: "[4컷 만화 개요 슬라이드]\\n이 슬라이드는 한신의 일대기를 한눈에 요약한 만화입니다. 가랑이 밑을 기어가던 치욕(과하지욕)부터 전군 총사령관 등극(국사무쌍), 평화 국면 속 쓸쓸한 최후(토사구팽)와 이 모든 삶을 관통하는 새옹의 진리를 한 장으로 모아 유쾌하게 시사점을 전달합니다.",
-      2: "[1컷 상세 슬라이드 - 과하지욕]\\n첫 컷인 '과하지욕'입니다. 한신은 일시적인 자존심을 버리고 가랑이 밑을 기었습니다. 홧김에 건달을 해쳐 살인범이 되는 최악의 루즈-루즈(Lose-Lose) 게임을 피한 현명함이었습니다. 때론 불필요한 감정 소모를 피하는 것이 비즈니스 대업 완수의 기초 체력입니다.",
-      3: "[2컷 상세 슬라이드 - 국사무쌍]\\n두 번째 컷 '국사무쌍'입니다. 창고지기에서 하루아침에 대장군으로 파격 등극하여 압도적인 승리를 거머쥐었습니다. 하지만 너무 빠른 성공 독식은 주변의 시기를 불러 모았고 이로 인해 새옹지마의 반전 위협이 도사리기 시작하는 발단이 되었습니다.",
-      4: "[3컷 상세 슬라이드 - 토사구팽]\\n세 번째 컷은 숙청을 상징하는 '토사구팽'입니다. 한신은 군사적으로는 천재였지만, 공적에 취해 황제 유방에게 '안전한 동료'라는 정서적 신뢰를 주는 데는 실패했습니다. 독단적 실적 질주가 지닌 무서운 위험성과 겸손의 소중함을 절절히 배웁니다.",
-      5: "[4컷 상세 슬라이드 - 새옹지마]\\n네 번째 컷은 본질을 조명합니다. 과거의 굴욕(나쁨)은 미래의 영광(좋음)을 낳았고, 영광의 정점(좋음)은 파멸(나쁨)로 이어졌습니다. 인생과 업무 성과 역시 파도처럼 흐를 뿐입니다. 어떠한 단기 실적이나 후퇴에도 영원히 주저앉거나 자만하지 않는 마인드의 평정심이 핵심입니다.",
-      6: "[마무리 행동 양식]\\n끝으로 우리 구성원 여러분께 3가지 제안을 드립니다. 일시적인 성과 악화나 피드백을 '가랑이 인내의 시간'으로 전환해 내고, 성과 달성 뒤에는 공을 나누며, 조직의 정서와 늘 싱크를 맞춥시다. 경청해 주셔서 감사합니다."
-    };
 
     function updateView() {
       // Hide all pages
@@ -453,9 +413,6 @@ export default function App() {
       // Update buttons
       document.getElementById("prev-btn").disabled = (activeIndex === 0);
       document.getElementById("next-btn").disabled = (activeIndex === totalSlides - 1);
-      
-      // Update teleprompter script
-      document.getElementById("script-target").innerText = scripts[activeIndex] || "";
     }
 
     function moveSlide(offset) {

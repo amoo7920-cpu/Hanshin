@@ -5,8 +5,8 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { presentationSlides, presenterNotes, comicPanels } from "../data";
-import { ChevronLeft, ChevronRight, Play, Pause, RotateCcw, Volume2, Monitor, Minimize2, FileText, Calendar, Clock } from "lucide-react";
-import { motion, AnimatePresence } from "motion/react";
+import { ChevronLeft, ChevronRight, Play, Pause, RotateCcw, Monitor, Minimize2, Calendar, Clock } from "lucide-react";
+import { motion } from "motion/react";
 
 interface SlideshowProps {
   initialSlideId?: number;
@@ -15,7 +15,6 @@ interface SlideshowProps {
 export default function Slideshow({ initialSlideId = 1 }: SlideshowProps) {
   const [currentIdx, setCurrentIdx] = useState<number>(0);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
-  const [showNotes, setShowNotes] = useState<boolean>(true);
   const [seconds, setSeconds] = useState<number>(0);
   const [isTimerActive, setIsTimerActive] = useState<boolean>(false);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
@@ -154,17 +153,6 @@ export default function Slideshow({ initialSlideId = 1 }: SlideshowProps) {
                 7초 자동 재생
               </>
             )}
-          </button>
-
-          {/* Note Toggle Button */}
-          <button
-            onClick={() => setShowNotes(!showNotes)}
-            className={`flex items-center gap-1 text-xs font-semibold px-3 py-1.5 rounded-md transition-colors ${
-              showNotes ? "bg-amber-100 text-amber-900" : "bg-stone-200/50 text-stone-600 hover:bg-stone-200"
-            }`}
-          >
-            <FileText className="w-3.5 h-3.5" />
-            대본 {showNotes ? "숨기기" : "보기"}
           </button>
         </div>
       </div>
@@ -314,36 +302,6 @@ export default function Slideshow({ initialSlideId = 1 }: SlideshowProps) {
           </button>
         </div>
       </div>
-
-      {/* Presenter Speech Script Teleprompter */}
-      <AnimatePresence>
-        {showNotes && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="overflow-hidden"
-          >
-            <div className="bg-amber-50 border border-amber-200/80 rounded-lg shadow-sm p-5 space-y-3.5">
-              {/* Header script badge */}
-              <div className="flex justify-between items-center pb-2.5 border-b border-amber-200/60">
-                <div className="flex items-center gap-2 text-amber-900">
-                  <Volume2 className="w-4 h-4 text-amber-800" />
-                  <span className="text-xs font-extrabold tracking-wider uppercase">발표자 비밀 대본 (Teleprompter)</span>
-                </div>
-                <span className="text-[11px] text-amber-800/80 bg-amber-100/80 px-2 py-0.5 rounded border border-amber-200/50">
-                  말하는 속도 맞춰 낭독 연습 가능
-                </span>
-              </div>
-
-              {/* Dynamic text block */}
-              <p className="text-xs sm:text-sm text-stone-800 leading-relaxed font-medium whitespace-pre-line bg-white/70 p-4 rounded-md border border-amber-200/30">
-                {presenterNotes[slide.id] || "이 슬라이드에는 별도의 비밀 대본이 없습니다. 자유롭게 구성하여 스피치해 보세요!"}
-              </p>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </div>
   );
 }
